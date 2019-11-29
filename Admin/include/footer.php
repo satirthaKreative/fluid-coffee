@@ -92,5 +92,19 @@ $lastPart1 = array_pop($url1);
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <?php } ?>
+<script>
+  function logout()
+  {
+    $.ajax({
+      url: 'ajax-page/logout.php',
+      type: 'post',
+      dataType: 'json',
+      success: function(event)
+      {
+        window.location.href="../../";
+      }
+    })
+  }
+</script>
 </body>
 </html>

@@ -176,6 +176,31 @@ $lastPart2 = array_pop($url2);
               </li>
             </ul>
           </li>
+          <!-- Logout -->
+          <li class="nav-item has-treeview">
+            <a href="javascript;" onclick="logout();" class="nav-link <?php if($lastPart2=='logout.php'){ echo 'active'; } ?>" >
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+                <!-- <i class="fas fa-angle-left right"></i> -->
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+            <!-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php if($lastPart2==''){ echo 'pages/eCard-Design.php'; }else { echo 'eCard-Design.php'; } ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add eCard Campaign</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php if($lastPart2==''){ echo 'pages/eCard-template.php'; }else { echo 'eCard-template.php'; } ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>eCard Template Image</p>
+                </a>
+              </li>
+            </ul> -->
+          </li>
           
 
         </ul>
