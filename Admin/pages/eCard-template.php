@@ -65,12 +65,12 @@
                   <tr>
                     <td><?= $i; ?></td>
                     <td><img src="uploads/<?= $fetchCate['ecard_path'] ?>/<?= $fetchCate['ecard_img'] ?>" alt="" height="100" width="150"></td>
-                    <td><?= date('d M,Y',strtotime($fetchCate['added_on'])); ?></td>
+                    <td><?= date('d M,Y',strtotime($fetchCate['update_on'])); ?></td>
                     <td>
                       <div class="switch">
                         <label>
                           Active
-                          <input type="checkbox" id="check_active_status" onchange="my_language_status(<?= $fetchCate['id'] ?>)" <?php if($fetchCate['status']==1){ ?>checked="checked" <?php }else{ ?>  <?php } ?>  value="<?php if($fetchCate['status']==1){ ?>1<?php }else{ ?>0<?php } ?>">
+                          <input type="checkbox" id="check_active_status" onchange="my_language_status(<?= $fetchCate[0] ?>)" <?php if($fetchCate[6]==1){ ?>checked="checked" <?php }else{ ?>  <?php } ?>  value="<?php if($fetchCate[6]==1){ ?>1<?php }else{ ?>0<?php } ?>">
                           <span class="lever"></span> Inactive
                         </label>
                       </div>
@@ -190,5 +190,34 @@
             }
           }
         })
+  }
+  // data value
+  function my_language_status(state_id)
+  {
+    var lang = $("#check_active_status").val();
+    if(lang == 1)
+    {
+       lang = $("#check_active_status").val(0);
+    }
+    else if(lang == 0)
+    {
+       lang = $("#check_active_status").val(1);
+    }
+    lang = $("#check_active_status").val();
+    var action_type = 'language_status';
+    $.ajax({
+      url: 'ajax-page/status-check.php',
+      type: 'post',
+      data: {action_type:action_type, data:lang, state_id:state_id},
+      dataType: 'json',
+      success:  function(event)
+      {
+        console.log(event);
+        if(event.no_error == true)
+        {
+          // setTimeout(function(){ window.location.href='<?= $lastPart; ?>'; }, 3000);
+        }
+      }
+    })
   }
 </script>
