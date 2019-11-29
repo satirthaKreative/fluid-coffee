@@ -56,7 +56,7 @@
 						</button>
 					</div>
 
-					<ul class="login-more p-t-190">
+					<!-- <ul class="login-more p-t-190">
 						<li class="m-b-8">
 							<span class="txt1">
 								Forgot
@@ -76,9 +76,11 @@
 								Sign up
 							</a>
 						</li>
-					</ul>
+					</ul> -->
 				</form>
+				<p><center class="succmsg"></center></p>
 			</div>
+
 		</div>
 	</div>
 	
@@ -101,12 +103,8 @@
 					console.log(event);
 					if(event.no_error)
 					{
-						$(".succmsg").html("<b>"+event.no_error+"</b>").fadeIn().delay(3000).fadeOut('slow');
+						$(".succmsg").html("<b style='color:green'>"+event.mainmsg+"</b>").fadeIn().delay(3000).fadeOut('slow');
 						setTimeout(function(){ window.location.href="../Admin/"; }, 3000);
-					}
-					else if(event.no_error)
-					{
-
 					}
 				}
 			})
