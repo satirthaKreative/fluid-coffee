@@ -12,5 +12,16 @@
 			$errmsg['no_error'] = true;
 		}
 	}
+	// category delete ajax
+	if($_POST['action_type'] == 'delete')
+	{
+		// insert category query
+		$insertQuery = $my_db->query("DELETE FROM ".$db_prefix."image WHERE id = '".$_POST['data1']."' ");
+		if($insertQuery)
+		{
+			$errmsg['main_msg'] = "Successfully Deleted Data";
+			$errmsg['no_error'] = true;
+		}
+	}
 	echo json_encode($errmsg);
 ?>

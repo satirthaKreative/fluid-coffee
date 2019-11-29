@@ -75,7 +75,7 @@
                         </label>
                       </div>
                     </td>
-                    <td><button type="button" class="btn btn-success btn-sm border-rad30" onclick="edit_catgory(<?= $fetchCate['id'] ?>)"><i class="fa fa-edit"></i></button> <button type="button" class="btn btn-danger btn-sm border-rad30" onclick="del_catgory(<?= $fetchCate['id'] ?>)"><i class="fa fa-trash"></i></button></td>
+                    <td><!-- <button type="button" class="btn btn-success btn-sm border-rad30" onclick="edit_catgory(<?= $fetchCate['id'] ?>)"><i class="fa fa-edit"></i></button> --> <button type="button" class="btn btn-danger btn-sm border-rad30" onclick="del_catgory(<?= $fetchCate[0] ?>)"><i class="fa fa-trash"></i></button></td>
                   </tr>
                 <?php 
                   $i++; } 
@@ -215,7 +215,38 @@
         console.log(event);
         if(event.no_error == true)
         {
-          // setTimeout(function(){ window.location.href='<?= $lastPart; ?>'; }, 3000);
+          setTimeout(function(){ window.location.href='<?= $lastPart; ?>'; }, 3000);
+        }
+      }
+    })
+  }
+  // delete category
+  function del_catgory(data)
+  {
+     $("#save_data").attr('onclick','delete_category('+data+')');
+     $(".modal-title").html("Delete Template");
+     $(".modal-body").html("<p>Are You really want to delete this Template ?</p>");
+     $("#add_modal").modal('show');
+     $("#save_data").attr('value','Delete');
+     $("#close_data").attr('value','Cancel');
+  }
+  // delete category
+  function delete_category(data)
+  {
+    var data1 = data;
+    var action_type = 'delete';
+    $.ajax({
+      url: 'ajax-page/image-status.php',
+      type: 'post',
+      data: {data1:data1,action_type:action_type},
+      dataType: 'json',
+      success:  function(event)
+      {
+        console.log(event);
+        if(event.no_error == true)
+        {
+          $(".text-success").html("<i class='fa fa-check'>"+event.main_msg+"</i>").fadeIn().delay(3000).fadeOut('slow');
+          setTimeout(function(){ window.location.href='<?= $lastPart; ?>'; }, 3000);
         }
       }
     })
