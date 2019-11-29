@@ -1,0 +1,168 @@
+/*Style Sheet*/
+.bg-color {
+	background-color: #007bff;
+}
+
+.color-white {
+	color: #fff;
+}
+
+.border-rad30 {
+	border-radius: 30px !important;
+}
+
+.border-rad5 {
+  border-radius: 5px !important;
+}
+
+.mr20 {
+	margin: 20px;
+}
+
+.mr9 {
+	margin: 9px;
+}
+
+.mr5{
+  margin-right: 5px;
+}
+
+.mt20{
+  margin-top: 20px;
+}
+
+/*Colors*/
+.color-red {
+	color: #ca0404 !important;
+}
+
+.color-green {
+	color: green !important;
+}
+
+.activity-btn {
+	border-radius: 56px !important;
+	padding: 5px !important;
+}
+
+.activity-btn:hover {
+	border-radius: 56px !important;
+	padding: 7px !important;
+	border: 1px solid #188878;
+}
+
+.activity-btn-active {
+	border-radius: 56px !important;
+	padding: 7px !important;
+	border: 1px solid #188878;
+}
+
+/*check away*/
+.switch label {
+  cursor: pointer;
+}
+.switch label input[type=checkbox] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch label .lever {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+  margin-right: .625rem;
+  vertical-align: middle;
+  content: "";
+  background-color: #e2e2e2;
+  border-radius: 50px;
+  width: 50px;
+  height: 13px;
+  transition: background .3s ease;
+}
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: #007bff;
+}
+.switch label .lever:after {
+  position: absolute;
+  top: -5px;
+  left: -4px;
+  display: inline-block;
+  content: "";
+  background-color: #007bff;
+  border-radius: 50%;
+  box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+  width: 20px;
+  height: 20px;
+  transition: left .3s ease,background .3s ease,box-shadow 1s ease;
+  border: 3px solid #ffffff;
+}
+.switch label input[type=checkbox]:checked+.lever:after {
+  left: 35px;
+}
+                          
+
+/*Success Modal Pop-Up*/
+.suc-modal-pop {
+	color: green;
+	font-size: 35px;
+	border: 2px solid green;
+	padding: 20px;
+	border-radius: 50px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.nav-test {
+    display: flex;
+    padding: 20px;
+}
+#v-pills-tab {
+    width: 350px;
+}
+#v-pills-tabContent {
+    width: 100%;
+    padding-left: 20px;
+}
+/*#add_modal{
+	margin-top: 150px !important;
+}*/
+
+/*language field show*/
+#eCard_des > .tab-pane {
+  display: none;
+}
+#eCard_des .active{
+  display: block !important;
+}
+
+/*float part*/
+.float-right
+{
+  float: right;
+}
+
+/*plus minus design*/
+.plus-design
+{
+  color: #fff;
+  background-color: green;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.minus-design
+{
+  color: #fff;
+  background-color: red;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.design-add-on
+{
+  float: right;
+}
+
+/*background color*/
+.bg-light-gray{
+  background: #eee;
+}
