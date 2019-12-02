@@ -128,7 +128,7 @@
   {
     $("#save_data").attr('onclick','save_data()');
     $(".modal-title").html("Add Category");
-    $(".modal-body").html('<form><div class="form-group"><label for="exampleInputEmail1">Category Name</label><input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter campaign category"><small id="emailHelp" class="form-text color-red">Campaign Category Add.</small></div><div class="form-group"><label for="exampleInputEmail2">Category Details</label><textarea class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter campaign details"></textarea><small id="emailHelp" class="form-text color-red">Campaign Details Add.</small></div></form>');
+    $(".modal-body").html('<form><div class="form-group"><label for="exampleInputEmail1">Category Name</label><input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="cate_name" placeholder="Enter campaign category"><small id="emailHelp" class="form-text color-red">Campaign Category Add.</small></div><div class="form-group"><label for="exampleInputEmail2">Category Details</label><textarea class="form-control" id="exampleInputEmail2" name="cate_del" aria-describedby="emailHelp" placeholder="Enter campaign details"></textarea><small id="emailHelp" class="form-text color-red">Campaign Details Add.</small></div></form>');
     $("#add_modal").modal('show');
   }
 

@@ -7,7 +7,7 @@
 	{
 		
 		// insert category query
-		$insertQuery = $my_db->query("INSERT INTO ".$db_prefix."category SET cate_name = '".$_POST['cate_name']."' ,cate_details = '".$_POST['cate_del']."' , added_on = '".date('Y-m-d')."' ");
+		$insertQuery = $my_db->query("INSERT INTO ".$db_prefix."category SET cate_name = '".$_POST['data1']."' ,cate_details = '".$_POST['data2']."' , added_on = '".date('Y-m-d')."' ");
 		if($insertQuery)
 		{
 			$errmsg['main_msg'] = "Successfully Added";

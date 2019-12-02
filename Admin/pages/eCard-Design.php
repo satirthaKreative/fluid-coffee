@@ -66,7 +66,9 @@
                       </div>
                       <div class="form-group">
                         <label for="short_d">Short Description:</label>
-                        <textarea class="form-control" id="short_d" name="short_d[]"></textarea>
+                        <textarea class="form-control description_view<?= $lan_select1['id']; ?>" id="short_d" name="short_d[]" onkeypress="short_des(<?= $lan_select1['id']; ?>)"></textarea>
+                        <small><p class="color-red">* Add only 24 words</p></small>
+                        <small><p class="sucmsg-show sucmsg<?= $lan_select1['id']; ?>"></p></small>
                       </div>
                     <!-- </form> -->
                   </div>
@@ -74,6 +76,8 @@
                 </div>
                 <?php $count++; } ?>
               </form>
+
+              
                 <div class="row">
                 <div class="col-12">
                   <button class="btn btn-primary border-rad30" type="button" onclick="submit_lang()">Submit</button>
@@ -108,7 +112,7 @@
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Language Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter campaign category">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter campaign category" style="display: none;">
             <small id="emailHelp" class="form-text color-red">Campaign Language Add.</small>
           </div>
         </form>
@@ -172,6 +176,30 @@
           setTimeout(function(){ $("#add_modal").modal('hide');window.location.href='<?= $lastPart; ?>'; }, 3000);
         }
       }
+    })
+  }
+
+  function short_des(data)
+  {
+    var full_data = data;
+    $(".description_view"+data).keypress(function(event){
+        var count_word = $(".description_view"+data).val();
+        str = count_word.toString().replace(/(^\s*)|(\s*$)/gi,"");
+        str = str.toString().replace(/[ ]{2,}/gi," ");
+        str = str.toString().replace(/\n /,"\n");
+        var show_data =  str.split(' ').length;
+
+        if(show_data > 24)
+        {
+          event.preventDefault();
+          // $(".sucmsg-show").addClass('sucmsg'+data);
+          // $(".sucmsg"+data).html("<span class='color-red'>Limits only 24 words</span>").fadeIn().delay(100).fadeOut('slow');
+        }
+        // else
+        // {
+        //   $(".sucmsg"+data).html('');
+        //   $(".sucmsg-show").removeClass("sucmsg"+data);
+        // }
     })
   }
 </script>

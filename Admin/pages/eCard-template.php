@@ -54,6 +54,7 @@
                     <th>Date</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Copy Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,7 @@
                       </div>
                     </td>
                     <td><!-- <button type="button" class="btn btn-success btn-sm border-rad30" onclick="edit_catgory(<?= $fetchCate['id'] ?>)"><i class="fa fa-edit"></i></button> --> <button type="button" class="btn btn-danger btn-sm border-rad30" onclick="del_catgory(<?= $fetchCate[0] ?>)"><i class="fa fa-trash"></i></button></td>
+                    <td><button type="button" class="btn btn-success btn-sm" onclick='copy_eCard(<?= $fetchCate['campaign_category'].",".$fetchCate[0] ?>)'>Copy eCrad</button></td>
                   </tr>
                 <?php 
                   $i++; } 
@@ -140,9 +142,78 @@
   </div>
 </div>
 
+<!-- copy to eCrad modal -->
+<div class="modal" id="eCrad-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Copy eCard Template</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-copy-template">
+          <div class="form-group">
+            <label for="choose_copy_campaign">Choose Campaign to Copy</label>
+            <select type="text" name="choose_copy_campaign" class="form-control" id="choose_copy_campaign" aria-describedby="emailHelp">
+              <option value="">Choose Campaign Type</option>
+                <?php
+                $selectCopyCate = $my_db->query("SELECT * FROM ".$db_prefix."category WHERE id <> '".$_SESSION['category_id']."' "); 
+                while($fetch_copy_category = $selectCopyCate->fetch_array()){ ?>
+                  <option value="<?= $fetch_copy_category['id'] ?>"><?= $fetch_copy_category['cate_name'] ?></option>
+                <?php } ?>
+            </select>
+            <?php $select_card_image = $my_db->query("SELECT * FROM ".$db_prefix."image WHERE id = '".$_SESSION['image_session_id']."' "); $fetch_card_image = $select_card_image->fetch_array(); ?>
+            <input type="hidden" name="card_image" id="card_image" value="<?= $fetch_card_image['ecard_img']; ?>">
+            <input type="hidden" name="card_path" id="card_path" value="<?= $fetch_card_image['ecard_path']; ?>">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <p class="text-success"></p>
+        <button type="button" class="btn btn-primary" id="save_data" onclick="copy_data();">Copy</button>
+        <button type="button" class="btn btn-danger" id="close_data" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- /.content-wrapper -->
 <?php include_once "../include/footer.php"; ?>
 <script>
+  // adding campaign
+  function copy_eCard(data,image_id)
+  {
+    var hidden_data = data; 
+    var image_new_id = image_id;
+    $.ajax({
+      url: 'ajax-page/session-hidden-ajax.php',
+      type: 'post',
+      data:  {hidden_data: hidden_data, image_new_id:  image_new_id},
+      dataType: 'json',
+      success: function(event)
+      {
+        console.log(event);
+        $("#eCrad-modal").modal('show');
+      }
+    })
+  }
+  //copty data
+  function copy_data()
+  {
+    $.ajax({
+      url: 'ajax-page/copy-eCard.php',
+      type: 'post',
+      data: $('#form-copy-template').serialize(),
+      dataType: 'text',
+      success:  function(event)
+      {
+
+          $(".text-success").html("<i class='fa fa-check'>Successfully Copied</i>").fadeIn().delay(3000).fadeOut('slow');
+          setTimeout(function(){ $("#eCrad-modal").modal('hide');window.location.href='<?= $lastPart; ?>'; }, 3000);
+      }
+    })
+  }
   // show modal
   function add_campaign()
   {
@@ -251,4 +322,5 @@
       }
     })
   }
+  
 </script>
